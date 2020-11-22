@@ -3,19 +3,18 @@ import "./styles.css";
 
 export const App = (props) => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState(props.name);
-  const [price, setPrice] = useState(props.price);
+  const [state, setState] = useState(props);
+  const { name, price } = state;
 
   const imcrement = () => setCount(count + 1);
   const decrement = () => setCount(count - 1);
   const reset = () => setCount(0);
   const divade3 = () => (count % 3 === 0 ? setCount(count / 3) : count);
   const chageName = (e) => {
-    setName(e.target.value);
+    setState({ ...state, name: e.target.value });
   };
   const restGoods = () => {
-    setName(props.name);
-    setPrice(props.price);
+    setState(props);
   };
   return (
     <>
@@ -31,7 +30,7 @@ export const App = (props) => {
       <input value={name} onChange={chageName} placeholder="商品名" />
       <input
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={(e) => setState({ ...state, price: e.target.value })}
         placeholder="金額"
       />
       <button onClick={restGoods}>reset product</button>

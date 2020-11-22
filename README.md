@@ -29,3 +29,29 @@ const value = useState("test");
     0: "test"
     1: ƒ bound dispatchAction() {}
 ```
+
+usaState はデータをオブジェクトとしてうけることもできる。
+下記のコードオブジェクトを props として渡すしている。
+
+```
+~中略~
+const App = (props) => {
+  const [ state, setState ] = useState(props);
+  const { name, price } = state;
+  return (
+    <>
+      <p>商品：　{name}, 値段：{price}円</p>
+      <input
+        value={name}
+        onChange={() => setState({...state, name:e.target.value})}
+      />
+    </>
+  );
+}
+
+//propsとしてオブジェクトごと渡す。
+App.defaultProps = {
+  name: ''
+  price: 1000
+}
+```
