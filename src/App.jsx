@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { CountUp } from "./CountUp";
 import "./styles.css";
 
 export const App = (props) => {
-  const [count, setCount] = useState(0);
   const [state, setState] = useState(props);
   const { name, price } = state;
 
-  const imcrement = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
-  const reset = () => setCount(0);
-  const divade3 = () => (count % 3 === 0 ? setCount(count / 3) : count);
+  useEffect(() => {
+    console.log("this is only to change namePropaty");
+  }, [name]);
+
   const chageName = (e) => {
     setState({ ...state, name: e.target.value });
   };
@@ -18,11 +18,7 @@ export const App = (props) => {
   };
   return (
     <>
-      <p>{count}</p>
-      <button onClick={imcrement}>increment</button>
-      <button onClick={decrement}>decrement</button>
-      <button onClick={reset}>reset</button>
-      <button onClick={divade3}>３の倍数の時は割ります</button>
+      <CountUp />
       <br />
       <p>
         現在の{name}は、{price}円です

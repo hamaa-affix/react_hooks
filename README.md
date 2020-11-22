@@ -55,3 +55,32 @@ App.defaultProps = {
   price: 1000
 }
 ```
+
+## useEffect
+
+- Vue で言うところの mounted
+- rendring された後に実行される
+- 第１引数に関数を取れる。第２引数に配列が取れる
+-
+
+'''
+import React, { useEffect } from "react";
+
+//mount や再描画(再レンダリング)されたタイミングで呼び出される。
+useEffect( () => {
+console.log('this is useEffect')
+})
+
+'''
+useEffect を mounted のタイミングで呼び出したい時は空の配列を第２引数に渡す。
+
+```
+useEffect(() => console.log('only mouted'), [])
+```
+
+特定の propaty(state)の状態が変わったタイミングで実行をする場合は d 第二引数の配列の中に state をいれる。そうすることでデータの監視を行ってくれる。
+
+```
+const [name, setName] = useState;
+useEffect(() => console.log('watch data'), [name])
+```
