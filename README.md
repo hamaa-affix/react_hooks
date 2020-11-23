@@ -84,3 +84,5 @@ useEffect(() => console.log('only mouted'), [])
 const [name, setName] = useState;
 useEffect(() => console.log('watch data'), [name])
 ```
+
+## useReducer
