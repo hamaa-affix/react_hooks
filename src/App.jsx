@@ -20,14 +20,16 @@ export const App = () => {
     });
     setTitle("");
     setBody("");
-    //disopatch
-    //action = {
-    //   type: "CREATE_EVENT",
-    //   title,
-    //   body
-    // }
-    console.log("event on fire");
   };
+
+  const deleteAllEvents = (e) => {
+    e.preventDefault();
+    const result = window.confirm("全てを削除しても良いですか？");
+    if (result) dispatch({ type: "DELETE_ALL_EVENTS" });
+  };
+
+  const unCreatable = title === "" || body === "";
+
   return (
     <>
       <div className="container">
@@ -51,10 +53,20 @@ export const App = () => {
             onChange={(e) => setBody(e.target.value)}
           />
           <br />
-          <button className="btn btn-primary" onClick={addEvent}>
+          <button
+            className="btn btn-primary"
+            onClick={addEvent}
+            disabled={unCreatable}
+          >
             イベント作成
           </button>
-          <button className="btn btn-danger">イベント削除</button>
+          <button
+            className="btn btn-danger"
+            onClick={deleteAllEvents}
+            disabled={state.length === 0}
+          >
+            全てのイベント削除
+          </button>
           <br />
           <hr />
           <h4>イベント一覧</h4>

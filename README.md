@@ -86,3 +86,53 @@ useEffect(() => console.log('watch data'), [name])
 ```
 
 ## useReducer
+
+- componet の状態管理の１つ
+- ローバルに呼び出せる
+- 1 回の更新で、複雑な演算が入ってオブジェクトのプロパティが多数書き換わるようなものを作る場合は、「(前の値, 変更内容) => 新しい値」という一定の書式で扱える reducer が便利
+
+管理するには reducers/index.js ファイルを作成
+
+```
+reduers/index.js
+
+//
+const events = (state = [], action) => {
+  switch (action.type) {
+    case "CREATE_EVENT":
+      const event = { title: action.title, body: action.body };
+      const length = state.length;
+      let id = length === 0 ? 1 : state[length - 1].id + 1;
+      return [...state, { id, ...event }];
+    case "DELETE_EVENT":
+      return state.filter((event) => event.id !== action.id);
+    case "DELETE_ALL_EVENTS":
+      return state;
+    default:
+      return state;
+  }
+};
+
+export default events;
+```
+
+コンポーネントで useReducer をインポートし、使用する。
+
+- state、状態を管理する dispach を分割代入する。
+- useReducer の引数は第一引数に reducer をうける。第２引数に初期値を設定
+
+```
+import React, {useReducer} from 'react';
+import reducer from './reducer/index.js';
+
+const [state, deispatch] = useReducer(reducer, [])
+
+const chageState = (e) => {
+  //dispatchの引数はオブジェクト。dispatchが実行されると、reducer(index.js)が呼び出され、処理が走る。
+  dispatch({
+    id:
+    title:
+    body:
+  })
+}
+```
