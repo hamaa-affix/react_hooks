@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CREATE_EVENT, DELETE_ALL_EVENTS } from "./actions/index";
+import { CREATE_EVENT, DELETE_ALL_EVENTS } from "../actions/index";
 export const EventForm = (props) => {
   const { state, dispatch } = props;
   const [title, setTitle] = useState("");
