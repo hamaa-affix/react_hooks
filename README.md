@@ -136,3 +136,59 @@ const chageState = (e) => {
   })
 }
 ```
+
+## useContext
+
+use constext とは
+親から子コンポーネント間でのデータ受け渡しを階層に関係なくデータを渡せる機能。
+基本的に親 → ひ孫にデータを渡す際は props を利用して親 → 子 → ひ孫といった流れでデータを渡していたが、useContext を利用することで親 → ひ孫と行った経路でデータを渡すことができる。
+
+### 実際の記述
+
+context 用の js ファイルを作成し管理、それを import する
+下記の内容でひとまず OK
+
+```
+contexts/AppContext.jsx
+import { createContexzt } from  'react';
+
+const AppContext = createContext();
+
+export default AppContext;
+```
+
+親コンポーネントで usaeContext 定義したファイルをを使用できるようにする。そしてそれをコンポーネントとして活用する。
+
+```
+App.jsx
+
+import AppContext from './contexts/AppContext';
+
+const App = () => {
+  return() {
+    <>
+    //value属性として渡したいデータを登録。
+      <AppContext　value={'this is useContex'}>
+        登録してる子のコンポーネントとか
+      </AppContext>
+    </>
+  }
+}
+```
+
+データを受けたいコンポーネントで useContex を使用するように宣言する
+
+```
+import React, {useContext} from 'react';
+
+cosnt Children = () => {
+  const value = useContex(AppContext);
+
+  return (
+    <>
+    //これでデータを受け取る子とることができる
+      <div>{value}</div>
+    </>
+  );
+}
+```

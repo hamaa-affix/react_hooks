@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DELETE_EVENT } from "../actions/index";
+import AppContext from "../contexts/AppContext";
 
-export const Event = ({ event, dispatch }) => {
+export const Event = ({ event }) => {
+  const { dispatch } = useContext(AppContext);
+
   const handleClickDeleteButton = (eventId) => {
     const result = window.confirm(`${eventId}削除しても良いですか？`);
     if (result) {
@@ -13,7 +16,6 @@ export const Event = ({ event, dispatch }) => {
   };
   return (
     <>
-      <div>{value}</div>
       <tr>
         <td>{event.id}</td>
         <td>{event.title}</td>

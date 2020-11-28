@@ -11,12 +11,17 @@ export const App = () => {
 
   return (
     <>
-      <AppContext.Provider value={"this is Context"}>
+      <AppContext.Provider
+        value={{
+          dispatch,
+          state
+        }}
+      >
         <div className="container">
-          <EventForm state={state} dispatch={dispatch} />
+          <EventForm />
           <hr />
           <h4>イベント一覧</h4>
-          <Events state={state} dispatch={dispatch} />
+          <Events />
         </div>
       </AppContext.Provider>
     </>
