@@ -8,7 +8,8 @@ import AppContext from "./contexts/AppContext";
 
 export const App = () => {
   const initialState = {
-    events: []
+    events: [],
+    operationLog: []
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
