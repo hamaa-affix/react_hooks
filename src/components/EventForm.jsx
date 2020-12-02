@@ -23,8 +23,8 @@ export const EventForm = () => {
 
     dispatch({
       type: ADD_OPERATION_LOG,
-      descriptions: "イベントを作成しました。",
-      oparatedAt: timeCurrentIso8601()
+      description: "イベントを作成しました。",
+      operatedAt: timeCurrentIso8601()
     });
 
     setTitle("");
@@ -40,12 +40,22 @@ export const EventForm = () => {
       dispatch({
         type: ADD_OPERATION_LOG,
         description: "全てイベントを削除しました。",
-        oparatedAt: timeCurrentIso8601()
+        operatedAt: timeCurrentIso8601()
       });
     }
   };
 
   const unCreatable = title === "" || body === "";
+
+  const deleteAllOperationLogs = (e) => {
+    e.preventDefault();
+    const result = window.confirm("全てのイベントログを削除していいですか？");
+    if (result) {
+      dispatch({
+        type: DELETE_ALL_OPERATION_LOGS
+      });
+    }
+  };
   return (
     <>
       <h4>イベント作成</h4>
@@ -81,6 +91,14 @@ export const EventForm = () => {
           disabled={state.events.length === 0}
         >
           全てのイベント削除
+        </button>
+
+        <button
+          className="btn btn-danger"
+          onClick={deleteAllOperationLogs}
+          disabled={state.operationLogs.length === 0}
+        >
+          全ての操作ログを削除する
         </button>
       </div>
     </>
