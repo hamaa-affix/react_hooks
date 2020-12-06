@@ -63,15 +63,15 @@ App.defaultProps = {
 - 第１引数に関数を取れる。第２引数に配列が取れる
 -
 
-'''
+```
 import React, { useEffect } from "react";
 
 //mount や再描画(再レンダリング)されたタイミングで呼び出される。
 useEffect( () => {
 console.log('this is useEffect')
 })
+```
 
-'''
 useEffect を mounted のタイミングで呼び出したい時は空の配列を第２引数に渡す。
 
 ```
